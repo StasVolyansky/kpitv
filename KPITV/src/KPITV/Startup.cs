@@ -71,6 +71,12 @@ namespace KPITV
 
             app.UseIdentity();
 
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["Authentication:Facebook:AppId"],
+                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
