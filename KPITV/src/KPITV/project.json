@@ -31,7 +31,8 @@
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0",
-    "Microsoft.AspNetCore.Authentication.Facebook": "1.0.0"
+    "Microsoft.AspNetCore.Authentication.Facebook": "1.0.0",
+    "NuGet.CommandLine": "3.4.3"
   },
 
   "tools": {

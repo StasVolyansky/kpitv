@@ -8,7 +8,6 @@ using System.Security.Claims;
 
 namespace KPITV.Controllers
 {
-
     [Authorize]
     public class AccountController : Controller
     {
@@ -28,6 +27,14 @@ namespace KPITV.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogOff()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         [HttpPost]

@@ -1,0 +1,23 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal">
+        <div>
+            <button type="submit" class="btn btn-default">Log off</button>
+        </div>
+    </form>
+}
+else
+{
+    var loginProvider = SignInManager.GetExternalAuthenticationSchemes().First();
+    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <div>
+            <button type="submit" class="btn btn-default" name="provider" value="@loginProvider.AuthenticationScheme" title="Log in using your @loginProvider.DisplayName account">@loginProvider.AuthenticationScheme</button>
+        </div>
+    </form>
+}

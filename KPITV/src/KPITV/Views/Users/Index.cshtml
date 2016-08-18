@@ -1,0 +1,27 @@
+﻿@model KPITV.Models.UsersViewModels.UsersViewModel
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+<h1>Welcome back, GOD</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Moderator</th>
+        @*<th>Editor</th>
+        <th>Researcher</th>
+        <th>Banned</th>*@
+    </tr>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>@user.UserName</td>
+            @if (user.Roles.Contains(new IdentityUserRole<string> { RoleId = "2", UserId = user.Id }))
+            {
+                <td><input type="checkbox" id="@user.UserName" name="moderator" checked /></td>
+            }
+            else
+            {
+                <td><input type="checkbox" id="@user.UserName" name="moderator" /></td>
+            }
+        </tr>
+    }
+</table>
