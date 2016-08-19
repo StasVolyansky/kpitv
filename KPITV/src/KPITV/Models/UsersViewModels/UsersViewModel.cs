@@ -4,6 +4,6 @@ namespace KPITV.Models.UsersViewModels
 {
     public class UsersViewModel
     {
-        public List<ApplicationUser> Users { get; set; }
+        public Dictionary<ApplicationUser, List<string>> Users { get; set; }
     }
 }

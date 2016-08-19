@@ -6,21 +6,45 @@
     <tr>
         <th>Name</th>
         <th>Moderator</th>
-        @*<th>Editor</th>
+        <th>Editor</th>
         <th>Researcher</th>
-        <th>Banned</th>*@
+        <th>Banned</th>
     </tr>
     @foreach (var user in Model.Users)
     {
         <tr>
-            <td>@user.UserName</td>
-            @if (user.Roles.Contains(new IdentityUserRole<string> { RoleId = "2", UserId = user.Id }))
+            <td>@user.Key.UserName</td>
+            @if (user.Value.Contains("Moderator"))
             {
-                <td><input type="checkbox" id="@user.UserName" name="moderator" checked /></td>
+                <td><input type="checkbox" id="@user.Key.UserName" name="Moderator" checked /></td>
             }
             else
             {
-                <td><input type="checkbox" id="@user.UserName" name="moderator" /></td>
+                <td><input type="checkbox" id="@user.Key.UserName" name="Moderator" /></td>
+            }
+            @if (user.Value.Contains("Editor"))
+            {
+                <td><input type="checkbox" id="@user.Key.UserName" name="Editor" checked /></td>
+            }
+            else
+            {
+                <td><input type="checkbox" id="@user.Key.UserName" name="Editor" /></td>
+            }
+            @if (user.Value.Contains("Researcher"))
+            {
+                <td><input type="checkbox" id="@user.Key.UserName" name="Researcher" checked /></td>
+            }
+            else
+            {
+                <td><input type="checkbox" id="@user.Key.UserName" name="Researcher" /></td>
+            }
+            @if (user.Value.Contains("User"))
+            {
+                <td><input type="checkbox" id="@user.Key.UserName" name="Banned" /></td>
+            }
+            else
+            {
+                <td><input type="checkbox" id="@user.Key.UserName" name="Banned" checked /></td>
             }
         </tr>
     }
