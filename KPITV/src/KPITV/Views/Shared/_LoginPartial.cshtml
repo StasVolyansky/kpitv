@@ -8,7 +8,7 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal">
         <div>
-            <button type="submit" class="btn btn-default">Log off</button>
+            <button type="submit" class="btn logoff"></button>
         </div>
     </form>
 }
@@ -17,7 +17,7 @@ else
     var loginProvider = SignInManager.GetExternalAuthenticationSchemes().First();
     <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
         <div>
-            <button type="submit" class="btn btn-default" name="provider" value="@loginProvider.AuthenticationScheme" title="Log in using your @loginProvider.DisplayName account">@loginProvider.AuthenticationScheme</button>
+            <button type="submit" class="btn login-facebook" name="provider" value="@loginProvider.AuthenticationScheme" title="Log in using your @loginProvider.DisplayName account"></button>
         </div>
     </form>
 }

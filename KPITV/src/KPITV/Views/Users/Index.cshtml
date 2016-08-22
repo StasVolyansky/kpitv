@@ -1,7 +1,24 @@
 ﻿@model KPITV.Models.UsersViewModels.UsersViewModel
 @using Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
-<h1>Welcome back, GOD</h1>
+<script>
+    $(document).ready(function () {
+       
+        $('.role-toggler').change(function () {
+            $.ajax({
+                method: 'post',
+                url: "@Url.Action("ChangeRole", "Users")",
+                data: {
+                    'name': $(this).attr('id'),
+                    'role': $(this).attr('name'),
+                    'hasRole': $(this).attr('name') == 'User' ? !$(this).prop('checked') : $(this).prop('checked')
+                }
+            });
+        });
+    });
+</script>
+
+<h1>Users list</h1>
 <table class="table table-bordered">
     <tr>
         <th>Name</th>
@@ -16,35 +33,35 @@
             <td>@user.Key.UserName</td>
             @if (user.Value.Contains("Moderator"))
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Moderator" checked /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Moderator" checked /></td>
             }
             else
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Moderator" /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Moderator" /></td>
             }
             @if (user.Value.Contains("Editor"))
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Editor" checked /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Editor" checked /></td>
             }
             else
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Editor" /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Editor" /></td>
             }
             @if (user.Value.Contains("Researcher"))
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Researcher" checked /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Researcher" checked /></td>
             }
             else
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Researcher" /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Researcher" /></td>
             }
             @if (user.Value.Contains("User"))
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Banned" /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="User" /></td>
             }
             else
             {
-                <td><input type="checkbox" id="@user.Key.UserName" name="Banned" checked /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="User" checked /></td>
             }
         </tr>
     }

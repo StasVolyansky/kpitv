@@ -1,1 +1,52 @@
-﻿
+﻿.login-facebook {
+    border: none;
+    padding-top: 10px;
+    margin-right: 10px;
+    background-image: url(/images/facebook_logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+.logoff {
+    border: none;
+    padding-top: 10px;
+    margin-right: 10px;
+    background-image: url(/images/log_off.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 44px;
+}
+
+.loading {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.loading-animation {
+    position: absolute;
+    right: 48%;
+    top: 40%;
+    display: none;
+    z-index: 100;
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(/images/loading.gif);
+}
+
+
+.header{
+    width: 100vw;
+    height: 62px;
+    border-bottom: solid black 2px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.main-menu{
+    padding: 10px 0 0 10px;
+}

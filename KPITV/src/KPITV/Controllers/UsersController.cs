@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KPITV.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
     public class UsersController : Controller
     {
         readonly UserManager<ApplicationUser> userManager;
@@ -21,7 +21,7 @@ namespace KPITV.Controllers
         public async Task<IActionResult> Index()
         {
             Dictionary<ApplicationUser, List<string>> usersDict = new Dictionary<ApplicationUser, List<string>>();
-            var users = await userManager.GetUsersInRoleAsync("Researcher");
+            var users = await userManager.GetUsersInRoleAsync("User");
             foreach (var user in users)
             {
                 usersDict.Add(user, await userManager.GetRolesAsync(user) as List<string>);
@@ -30,13 +30,13 @@ namespace KPITV.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeRole(string id, string role, bool hasRole)
+        public async Task<IActionResult> ChangeRole(string name, string role, bool hasRole)
         {
             if (hasRole)
-                await userManager.AddToRoleAsync(await userManager.FindByIdAsync(id), role);
+                await userManager.AddToRoleAsync(await userManager.FindByNameAsync(name), role);
             else
-                await userManager.RemoveFromRoleAsync(await userManager.FindByIdAsync(id), role);
-            return View();
+                await userManager.RemoveFromRoleAsync(await userManager.FindByNameAsync(name), role);
+            return new EmptyResult();
         }
     }
 }
