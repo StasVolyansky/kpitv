@@ -94,7 +94,15 @@ namespace KPITV.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = $"{model.FirstName} {model.LastName}",
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    ProfileLink = model.ProfileLink
+                };
                 var result = await userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

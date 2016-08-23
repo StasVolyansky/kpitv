@@ -21,7 +21,7 @@ namespace KPITV.Controllers
         public async Task<IActionResult> Index()
         {
             Dictionary<ApplicationUser, List<string>> usersDict = new Dictionary<ApplicationUser, List<string>>();
-            var users = await userManager.GetUsersInRoleAsync("User");
+            var users = await userManager.GetUsersInRoleAsync("Member");
             foreach (var user in users)
             {
                 usersDict.Add(user, await userManager.GetRolesAsync(user) as List<string>);

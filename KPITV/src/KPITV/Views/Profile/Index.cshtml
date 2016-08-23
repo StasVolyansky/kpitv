@@ -1,0 +1,26 @@
+﻿@model KPITV.Models.ProfileViewModels.ProfileViewModel
+<h1>@Model.FirstName @Model.LastName</h1>
+<div>
+    Email: @Model.Email
+</div>
+<div>
+    Phone: @Model.PhoneNumber
+</div>
+@if (Model.LinkVK != null)
+{
+    <div>
+        VK Link: @Model.LinkVK
+    </div>
+}
+@if (Model.LinkFB != null)
+{
+    <div>
+        FB Link: @Model.LinkFB
+    </div>
+}
+@if (Model.About != null)
+{
+    <div>
+        About myself:
+    </div>
+}

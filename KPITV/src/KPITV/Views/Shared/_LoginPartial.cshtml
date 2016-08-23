@@ -1,23 +1,23 @@
 ﻿@inject SignInManager<ApplicationUser> SignInManager
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Log in";
 }
-
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal">
-        <div>
-            <button type="submit" class="btn logoff"></button>
-        </div>
-    </form>
+    <div class="user-wrapper">
+        @UserManager.GetUserName(User)
+        <button class="settings-button" title="Settings"></button>
+
+        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log">
+            <button type="submit" class="logoff"></button>
+        </form>
+    </div>
 }
 else
 {
     var loginProvider = SignInManager.GetExternalAuthenticationSchemes().First();
-    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-        <div>
-            <button type="submit" class="btn login-facebook" name="provider" value="@loginProvider.AuthenticationScheme" title="Log in using your @loginProvider.DisplayName account"></button>
-        </div>
+    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal form-log">
+        <button type="submit" class="login-facebook" name="provider" value="@loginProvider.AuthenticationScheme" title="Log in using your @loginProvider.DisplayName account"></button>
     </form>
 }

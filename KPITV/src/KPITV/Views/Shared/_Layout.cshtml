@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KPITV</title>
-
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
@@ -20,7 +19,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -31,21 +29,18 @@
 </head>
 <body>
     <div class="loading-animation"></div>
-    <div>
-        <div class="header">
-                <ul class="main-menu nav nav-pills">
-                    <li><a href="@Url.Action("Index", "Users")">Users</a></li>
-                    <li class="menu-login pull-right">
-                        @await Html.PartialAsync("_LoginPartial")
-                    </li>
-                </ul>
-            </div>
 
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-        </div>
-        @RenderSection("scripts", required: false)
+    <div class="header">
+        <ul class="main-menu nav nav-pills">
+            <li><a href="@Url.Action("Index", "Users")">Users</a></li>
+            <li class="menu-login pull-right">
+                @await Html.PartialAsync("_LoginPartial")
+            </li>
+        </ul>
     </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

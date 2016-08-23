@@ -1,7 +1,11 @@
-﻿.login-facebook {
+﻿button {
+}
+
+.login-facebook {
     border: none;
     padding-top: 10px;
     margin-right: 10px;
+    background-color: transparent;
     background-image: url(/images/facebook_logo.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -11,13 +15,13 @@
 
 .logoff {
     border: none;
-    padding-top: 10px;
     margin-right: 10px;
+    background-color: transparent;
     background-image: url(/images/log_off.png);
     background-size: contain;
     background-repeat: no-repeat;
-    width: 40px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
 }
 
 .loading {
@@ -38,8 +42,7 @@
     background-image: url(/images/loading.gif);
 }
 
-
-.header{
+.header {
     width: 100vw;
     height: 62px;
     border-bottom: solid black 2px;
@@ -47,6 +50,26 @@
     background-repeat: no-repeat;
 }
 
-.main-menu{
+.main-menu {
     padding: 10px 0 0 10px;
+}
+
+.settings-button {
+    border: none;
+    padding-top: 10px;
+    margin-right: 10px;
+    background-color: transparent;
+    background-image: url(/images/settings.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+}
+
+.user-wrapper {
+    margin-right: 10px;
+}
+
+.form-log {
+    display: inline;
 }

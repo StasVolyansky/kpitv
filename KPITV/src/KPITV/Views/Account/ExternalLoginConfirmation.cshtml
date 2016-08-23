@@ -2,15 +2,12 @@
 @{
     ViewData["Title"] = "Register";
 }
-
 <h2>@ViewData["Title"].</h2>
 <h3>Associate your @ViewData["LoginProvider"] account.</h3>
-
 <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
     <h4>Association Form</h4>
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
-
     <p class="text-info">
         You've successfully authenticated with <strong>@ViewData["LoginProvider"]</strong>.
         Please enter an email address for this site below and click the Register button to finish
@@ -24,12 +21,35 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProfileLink" class="col-md-2 control-label">Profile link</label>
+        <div class="col-md-10">
+            <input asp-for="ProfileLink" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName" class="col-md-2 control-label">First name</label>
+        <div class="col-md-10">
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="col-md-2 control-label">Last name</label>
+        <div class="col-md-10">
+            <input asp-for="LastName" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
             <button type="submit" class="btn btn-default">Register</button>
         </div>
     </div>
 </form>
-
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
