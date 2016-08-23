@@ -5,19 +5,26 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="user-wrapper">
-        @UserManager.GetUserName(User)
-        <button class="settings-button" title="Settings"></button>
-
-        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log">
-            <button type="submit" class="logoff"></button>
-        </form>
-    </div>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@UserManager.GetUserName(User)</a>
+        <ul class="dropdown-menu">
+            <li><a class="" title="Settings">Settings</a></li>
+            <li>
+                <a onclick="LogOff()">Log Off</a>
+                <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log">
+                    @*<button type="submit" class="btn btn-default logoff">Log Off</button>*@
+                </form>
+            </li>
+        </ul>
+    </li>
 }
 else
 {
     var loginProvider = SignInManager.GetExternalAuthenticationSchemes().First();
-    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal form-log">
-        <button type="submit" class="login-facebook" name="provider" value="@loginProvider.AuthenticationScheme" title="Log in using your @loginProvider.DisplayName account"></button>
-    </form>
+    <li>
+        <a class="login-facebook" onclick="LogFB()"></a>
+        <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" id="logFBForm" method="post" class="form-horizontal form-log">
+            <input type="hidden" name="provider" value="@loginProvider.AuthenticationScheme" />
+        </form>
+    </li>
 }

@@ -12,3 +12,11 @@ function StopLoading() {
     $(".loading-animation").css({ "display": "none" });
     $("body").removeClass("loading");
 }
+
+function LogOff() {
+    document.getElementById('logoutForm').submit();
+}
+
+function LogFB() {
+    $('#logFBForm').submit();
+}

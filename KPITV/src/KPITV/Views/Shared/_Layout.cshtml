@@ -30,14 +30,16 @@
 <body>
     <div class="loading-animation"></div>
 
-    <div class="header">
-        <ul class="main-menu nav nav-pills">
+    <nav class="navbar navbar-default">
+        <a class="navbar-brand logo-brand" href="#"></a>
+        <ul class="nav navbar-nav">
+            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
             <li><a href="@Url.Action("Index", "Users")">Users</a></li>
-            <li class="menu-login pull-right">
-                @await Html.PartialAsync("_LoginPartial")
-            </li>
         </ul>
-    </div>
+        <ul class="nav navbar-nav navbar-right user-menu">
+            @await Html.PartialAsync("_LoginPartial")
+        </ul>
+    </nav>
     <div class="container body-content">
         @RenderBody()
     </div>

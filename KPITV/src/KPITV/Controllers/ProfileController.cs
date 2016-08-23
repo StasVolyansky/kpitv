@@ -15,11 +15,13 @@ namespace KPITV.Controllers
     {
         ApplicationDbContext db;
         readonly UserManager<ApplicationUser> userManager;
+
         public ProfileController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
             this.db = db;
             this.userManager = userManager;
         }
+
         [Route("{profileLink}")]
         public IActionResult Index(string profileLink)
         {

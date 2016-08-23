@@ -28,7 +28,6 @@ namespace KPITV.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
