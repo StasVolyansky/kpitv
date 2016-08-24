@@ -28,5 +28,18 @@ namespace KPITV.Controllers
             ProfileViewModel user = userManager.FindByProfileLink(db, profileLink);
             return View(user);
         }
+
+        [HttpGet]
+        [Authorize(Roles ="Member")]
+        public IActionResult Settings()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public IActionResult Settings()
+        //{
+
+        //}
     }
 }
