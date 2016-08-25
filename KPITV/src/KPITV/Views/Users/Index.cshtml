@@ -3,7 +3,6 @@
 
 <script>
     $(document).ready(function () {
-       
         $('.role-toggler').change(function () {
             $.ajax({
                 method: 'post',
@@ -24,7 +23,7 @@
         <th>Name</th>
         <th>Moderator</th>
         <th>Editor</th>
-        <th>Researcher</th>
+        <th>Member</th>
         <th>Banned</th>
     </tr>
     @foreach (var user in Model.Users)
@@ -47,13 +46,13 @@
             {
                 <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Editor" /></td>
             }
-            @if (user.Value.Contains("Researcher"))
+            @if (user.Value.Contains("Member"))
             {
-                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Researcher" checked /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Member" checked /></td>
             }
             else
             {
-                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Researcher" /></td>
+                <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Member" /></td>
             }
             @if (user.Value.Contains("User"))
             {

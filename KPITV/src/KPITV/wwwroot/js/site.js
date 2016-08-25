@@ -20,3 +20,16 @@ function LogOff() {
 function LogFB() {
     $('#logFBForm').submit();
 }
+
+$(document).ready(function () {
+    $(".settings-info input").change(function () {
+        $.ajax({
+            method: "post",
+            url: "settings",
+            data: {
+                param: $(this).attr("name"),
+                value: $(this).val()
+            }
+        });
+    });
+});

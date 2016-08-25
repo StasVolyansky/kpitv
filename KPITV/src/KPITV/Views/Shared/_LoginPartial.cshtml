@@ -8,11 +8,10 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@UserManager.GetUserName(User)</a>
         <ul class="dropdown-menu">
-            <li><a class="" title="Settings">Settings</a></li>
+            <li><a href="/settings" title="Settings">Settings</a></li>
             <li>
                 <a onclick="LogOff()">Log Off</a>
                 <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log">
-                    @*<button type="submit" class="btn btn-default logoff">Log Off</button>*@
                 </form>
             </li>
         </ul>

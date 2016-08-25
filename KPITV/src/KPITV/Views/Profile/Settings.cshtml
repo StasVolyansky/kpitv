@@ -1,2 +1,86 @@
-﻿@inject UserManager<ApplicationUser> UserManager;
+﻿@model KPITV.Models.ProfileViewModels.ProfileViewModel
+
+<div class="settings">
+    <div>Profile information</div>
+    <div class="settings-info">
+        <div>
+            <div>
+                <label>Email:</label>
+            </div>
+            <div>
+                <input type="email" name="email" value="@Model.Email" />
+            </div>
+        </div>
+        <div>
+            <div>
+                <label>Phone:</label>
+            </div>
+            <div>
+                <input type="tel" name="phoneNumber" value="@Model.PhoneNumber" />
+            </div>
+        </div>
+        <div>
+            <div>
+                <label>Profile link:</label>
+            </div>
+            <div>
+                kpitv.watch/<input name="profileLink" value="@Model.ProfileLink" />
+            </div>
+        </div>
+
+        @if (Model.LinkVK != null)
+        {
+            <div>
+                <div>
+                    <label>VK:</label>
+                </div>
+                <div>
+                    vk.com/<input name="linkVK" value="@Model.LinkVK" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div>
+                <div>
+                    <label>VK:</label>
+                </div>
+                <div>
+                    vk.com/<input name="linkVK" placeholder="<your id>" />
+                </div>
+            </div>
+        }
+        @if (Model.LinkFB != null)
+        {
+            <div>
+                <div>
+                    <label>FB:</label>
+                </div>
+                <div>
+                    vk.com/<input name="linkFB" value="@Model.LinkFB" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div>
+                <div>
+                    <label>FB:</label>
+                </div>
+                <div>
+                    facebook.com/<input name="linkFB" placeholder="<your id>" />
+                </div>
+            </div>
+        }
+
+        <div>
+            <div>
+                <label>About:</label>
+            </div>
+            <div>
+                <textarea name="about">@Model.About</textarea>
+            </div>
+        </div>
+    </div>
+</div>
 

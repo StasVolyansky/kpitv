@@ -18,6 +18,7 @@ namespace KPITV.Controllers
             this.userManager = userManager;
         }
 
+        [Route("users")]
         public async Task<IActionResult> Index()
         {
             Dictionary<ApplicationUser, List<string>> usersDict = new Dictionary<ApplicationUser, List<string>>();

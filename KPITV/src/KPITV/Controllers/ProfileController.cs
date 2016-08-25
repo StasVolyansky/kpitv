@@ -5,12 +5,11 @@ using KPITV.Models;
 using KPITV.Models.BusinessLogic;
 using KPITV.Models.Data;
 using KPITV.Models.ProfileViewModels;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using System.Threading.Tasks;
 
 namespace KPITV.Controllers
 {
-    //[Authorize(Roles = "Member")]
+
     public class ProfileController : Controller
     {
         ApplicationDbContext db;
@@ -25,21 +24,26 @@ namespace KPITV.Controllers
         [Route("{profileLink}")]
         public IActionResult Index(string profileLink)
         {
-            ProfileViewModel user = userManager.FindByProfileLink(db, profileLink);
-            return View(user);
+            ProfileViewModel pvm = userManager.FindByProfileLink(db, profileLink);
+            return View(pvm);
         }
 
         [HttpGet]
-        [Authorize(Roles ="Member")]
-        public IActionResult Settings()
+        [Authorize(Roles = "Member")]
+        [Route("settings")]
+        public async Task<IActionResult> Settings()
         {
-            return View();
+            ProfileViewModel pvm = await userManager.GetUserAsync(HttpContext.User);
+            return View(pvm);
         }
 
-        //[HttpPost]
-        //public IActionResult Settings()
-        //{
-
-        //}
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [Route("settings")]
+        public async Task<IActionResult> Settings(string param, string value)
+        {
+            await userManager.UpdateAsync(UserUpdate.Update(param, value, await userManager.GetUserAsync(HttpContext.User)));
+            return new EmptyResult();
+        }
     }
 }

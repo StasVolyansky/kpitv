@@ -6,9 +6,6 @@
     margin-right: 0px;
 }
 
-.dropdown > a {
-}
-
 .dropdown-menu {
     min-width: 55px;
 }
@@ -20,6 +17,56 @@
     margin: 11px 11px 0 0;
     width: 15px;
 }
+
+/***Settings***/
+
+.settings-info {
+    display: table;
+    width: 500px;
+}
+
+    .settings-info > div {
+        display: table-row;
+    }
+
+        .settings-info > div > div {
+            padding: 5px;
+            display: table-cell;
+            vertical-align: top;
+        }
+
+            .settings-info > div > div:first-child {
+                text-align: right;
+            }
+
+.settings-edit {
+    visibility: hidden;
+}
+
+.settings-info label {
+    margin-right: 5px;
+}
+
+.settings-info input, .settings-info textarea {
+    background-color: transparent;
+    width: 200px;
+    padding: 0;
+    border: none;
+}
+
+
+/*.settings-info input:focus {
+    outline: solid 1px gray;
+}*/
+
+.make-visible {
+    visibility: visible;
+}
+
+.settings-input-hover {
+}
+
+/**************/
 
 /***Loading animation***/
 .loading {

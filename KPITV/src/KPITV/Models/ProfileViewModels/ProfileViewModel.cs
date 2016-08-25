@@ -13,6 +13,7 @@ namespace KPITV.Models.ProfileViewModels
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string PhoneNumberAdditional { get; set; }
+        public string ProfileLink { get; set; }
         public string LinkVK { get; set; }
         public string LinkFB { get; set; }
         public string About { get; set; }
@@ -25,6 +26,7 @@ namespace KPITV.Models.ProfileViewModels
                 PhoneNumber = applicationUser.PhoneNumber,
                 Email = applicationUser.Email,
                 PhoneNumberAdditional = applicationUser.PhoneNumberAdditional,
+                ProfileLink = applicationUser.ProfileLink,
                 LinkVK = applicationUser.LinkVK,
                 LinkFB = applicationUser.LinkFB,
                 About = applicationUser.About
