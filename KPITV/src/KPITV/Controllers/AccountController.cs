@@ -43,7 +43,8 @@ namespace KPITV.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
-            // Request a redirect to the external login provider.
+            string url = "https://oauth.vk.com/authorize?client_id=5538688&display=popup&redirect_uri=https://local.com/ExternalLoginCallback&scope=friends&response_type=token&v=5.53";
+
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
             var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
@@ -53,6 +54,14 @@ namespace KPITV.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
+
+
+
+
+
+
+
+
             if (remoteError != null)
             {
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");

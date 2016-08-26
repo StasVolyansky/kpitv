@@ -18,11 +18,7 @@
 }
 else
 {
-    var loginProvider = SignInManager.GetExternalAuthenticationSchemes().First();
     <li>
-        <a class="login-facebook" onclick="LogFB()"></a>
-        <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" id="logFBForm" method="post" class="form-horizontal form-log">
-            <input type="hidden" name="provider" value="@loginProvider.AuthenticationScheme" />
-        </form>
+        <a href="/Account/ExternalLogin" class="login-vk"></a>
     </li>
 }

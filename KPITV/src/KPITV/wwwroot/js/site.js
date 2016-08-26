@@ -17,10 +17,6 @@ function LogOff() {
     document.getElementById('logoutForm').submit();
 }
 
-function LogFB() {
-    $('#logFBForm').submit();
-}
-
 $(document).ready(function () {
     $(".settings-info input").change(function () {
         $.ajax({
