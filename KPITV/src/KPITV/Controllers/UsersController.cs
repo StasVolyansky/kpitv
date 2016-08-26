@@ -1,4 +1,5 @@
 ﻿using KPITV.Models;
+using KPITV.Models.Data;
 using KPITV.Models.UsersViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,11 +12,13 @@ namespace KPITV.Controllers
     [Authorize(Roles = "Admin,Moderator")]
     public class UsersController : Controller
     {
+        ApplicationDbContext db;
         readonly UserManager<ApplicationUser> userManager;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
             this.userManager = userManager;
+            this.db = db;
         }
 
         [Route("users")]
@@ -36,7 +39,11 @@ namespace KPITV.Controllers
             if (hasRole)
                 await userManager.AddToRoleAsync(await userManager.FindByNameAsync(name), role);
             else
+            {
+                var lol = await userManager.FindByNameAsync(name);
                 await userManager.RemoveFromRoleAsync(await userManager.FindByNameAsync(name), role);
+            }
+            db.SaveChanges();
             return new EmptyResult();
         }
     }

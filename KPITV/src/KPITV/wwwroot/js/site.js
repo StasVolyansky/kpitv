@@ -33,3 +33,18 @@ $(document).ready(function () {
         });
     });
 });
+
+function IsMember() {
+    $.ajax({
+        method: "post",
+        url: "https://api.vk.com/method/groups.getMembers",
+        data: {
+            group_id: "kpitvhome",
+            version: "5.27"
+        },
+        dataType: "json",
+        success: function (data) {
+            alert(data);
+        }
+    });
+}

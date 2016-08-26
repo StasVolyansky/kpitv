@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KPITV.Models;
+using KPITV.Models.AccountViewModels;
+using KPITV.Models.BusinessLogic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using KPITV.Models;
-using System.Threading.Tasks;
-using KPITV.Models.AccountViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace KPITV.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        readonly UserManager<ApplicationUser> userManager;
-        readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
         public AccountController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
@@ -28,6 +29,7 @@ namespace KPITV.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
@@ -109,6 +111,7 @@ namespace KPITV.Controllers
                     if (result.Succeeded)
                     {
                         await signInManager.SignInAsync(user, isPersistent: false);
+                        returnUrl = "/settings";
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -118,8 +121,7 @@ namespace KPITV.Controllers
             return View(model);
         }
 
-
-        IActionResult RedirectToLocal(string returnUrl)
+        private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
@@ -131,7 +133,7 @@ namespace KPITV.Controllers
             }
         }
 
-        void AddErrors(IdentityResult result)
+        private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {

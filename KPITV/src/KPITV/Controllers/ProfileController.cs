@@ -43,6 +43,7 @@ namespace KPITV.Controllers
         public async Task<IActionResult> Settings(string param, string value)
         {
             await userManager.UpdateAsync(UserUpdate.Update(param, value, await userManager.GetUserAsync(HttpContext.User)));
+            db.SaveChanges();
             return new EmptyResult();
         }
     }
