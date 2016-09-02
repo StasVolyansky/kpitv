@@ -1,6 +1,5 @@
 ﻿using KPITV.Models;
 using KPITV.Models.AccountViewModels;
-using KPITV.Models.BusinessLogic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -97,7 +96,7 @@ namespace KPITV.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = $"{model.FirstName} {model.LastName}",
+                    UserName = model.Email,
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     FirstName = model.FirstName,
@@ -111,7 +110,7 @@ namespace KPITV.Controllers
                     if (result.Succeeded)
                     {
                         await signInManager.SignInAsync(user, isPersistent: false);
-                        returnUrl = "/settings";
+                        returnUrl = Url.Action("Settings", "Profile");
                         return RedirectToLocal(returnUrl);
                     }
                 }
