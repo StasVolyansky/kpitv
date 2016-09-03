@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace KPITV.Models.ProfileViewModels
+﻿namespace KPITV.Models.ProfileViewModels
 {
     public class ProfileViewModel
     {
@@ -32,6 +26,5 @@ namespace KPITV.Models.ProfileViewModels
                 About = applicationUser.About
             };
         }
-
     }
 }

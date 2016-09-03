@@ -29,7 +29,7 @@
     @foreach (var user in Model.Users)
     {
         <tr>
-            <td>@user.Key.UserName</td>
+            <td>@user.Key.FirstName @user.Key.LastName</td>
             @if (user.Value.Contains("Moderator"))
             {
                 <td><input class="role-toggler" type="checkbox" id="@user.Key.UserName" name="Moderator" checked /></td>

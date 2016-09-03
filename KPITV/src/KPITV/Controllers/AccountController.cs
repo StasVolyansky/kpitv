@@ -40,9 +40,14 @@ namespace KPITV.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        public IActionResult ExternalLogin(string provider, string remember, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
+            if (remember == "on")
+                HttpContext.Response.Cookies.Append("remember", "true");
+            else
+                HttpContext.Response.Cookies.Append("remember", "false");
+
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
             var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
@@ -62,9 +67,10 @@ namespace KPITV.Controllers
             {
                 return RedirectToAction(nameof(Login));
             }
-
+            string value;
+            HttpContext.Request.Cookies.TryGetValue("remember", out value);
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+            var result = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: value == "true" ? true : false);
             if (result.Succeeded)
             {
                 return RedirectToLocal(returnUrl);
@@ -109,7 +115,6 @@ namespace KPITV.Controllers
                     result = await userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
-                        await signInManager.SignInAsync(user, isPersistent: false);
                         returnUrl = Url.Action("Settings", "Profile");
                         return RedirectToLocal(returnUrl);
                     }

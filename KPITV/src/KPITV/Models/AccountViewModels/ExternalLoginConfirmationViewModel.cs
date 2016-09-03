@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace KPITV.Models.AccountViewModels
 {
@@ -24,6 +25,7 @@ namespace KPITV.Models.AccountViewModels
         [RegularExpression("[a-z][a-z0-9]+")]
         [MinLength(3)]
         [MaxLength(30)]
+        [Remote(action: "CheckProfileLink", controller: "Profile", ErrorMessage = "This link is busy")]
         public string ProfileLink { get; set; }
     }
 }

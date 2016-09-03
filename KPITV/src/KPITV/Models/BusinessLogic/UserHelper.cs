@@ -1,7 +1,23 @@
-﻿namespace KPITV.Models.BusinessLogic
+﻿using System.Collections.Generic;
+
+namespace KPITV.Models.BusinessLogic
 {
-    public static class UserUpdate
+    public static class UserHelper
     {
+        public static string GetOperator(string phone)
+        {
+            Dictionary<string, List<string>> Operators = new Dictionary<string, List<string>>{
+                { "Lifecell", new List<string> { "93", "63", "73" } },
+                { "Vodafone", new List<string> { "50", "66", "95", "99" } },
+                { "Kyivstar", new List<string> { "67", "68", "96", "97", "98" } },
+            };
+            string code = phone.Substring(4, 2);
+            foreach (var item in Operators)
+                if (item.Value.Contains(code))
+                    return item.Key;
+            return null;
+        }
+
         public static ApplicationUser Update(string param, string value, ApplicationUser user)
         {
             switch (param)

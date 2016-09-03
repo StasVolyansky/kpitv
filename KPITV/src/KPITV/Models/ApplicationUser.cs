@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace KPITV.Models
@@ -19,7 +20,7 @@ namespace KPITV.Models
         public string LastName { get; set; }
         [MaxLength(20)]
         [Phone]
-        [RegularExpression(@"\+380(50|63|66|67|68|73|91|92|93|94|95|96|97|98|99)[0-9]{7}")]
+        [RegularExpression(@"\+380(50|63|66|67|68|73|91|92|93|94|95|96|97|98|99)[0-9]{7}", ErrorMessage = "Invalid phone number format. Example: +380941002929") ]
         public string PhoneNumberAdditional { get; set; }
         [MaxLength(50)]
         public string LinkVK { get; set; }
@@ -31,6 +32,7 @@ namespace KPITV.Models
         [RegularExpression("[a-z][a-z0-9]+")]
         [MinLength(3)]
         [MaxLength(30)]
+        [Remote(action: "CheckProfileLink", controller: "Profile", ErrorMessage = "This link is occupied \0")]
         public string ProfileLink { get; set; }
     }
 }

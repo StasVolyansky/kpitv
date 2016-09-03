@@ -1,10 +1,12 @@
-﻿@model KPITV.Models.ProfileViewModels.ProfileViewModel
+﻿@using KPITV.Models.BusinessLogic
+
+@model KPITV.Models.ProfileViewModels.ProfileViewModel
 <h1>@Model.FirstName @Model.LastName</h1>
 <div>
     Email: @Model.Email
 </div>
 <div>
-    Phone: @Model.PhoneNumber
+    Phone: @Model.PhoneNumber (@UserHelper.GetOperator(@Model.PhoneNumber))
 </div>
 @if (Model.LinkVK != null)
 {
