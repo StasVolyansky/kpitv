@@ -12,7 +12,7 @@
             <li><a href="/settings" title="Settings">Settings</a></li>
             <li>
                 <a onclick="LogOff()">Log Off</a>
-                <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log"></form>
+                <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log"></form>
             </li>
         </ul>
     </li>
@@ -21,7 +21,7 @@ else
 {
     var loginProvider = SignInManager.GetExternalAuthenticationSchemes().First();
     <li>
-        <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal form-log">
+        <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" id="logFBForm" class="form-horizontal form-log">
             <label for="remebmer">Remember?</label><input type="checkbox" name="remember"/>
             <input type="hidden" name="provider" value="@loginProvider.AuthenticationScheme" />
         </form>

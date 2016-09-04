@@ -24,13 +24,16 @@ namespace KPITV.Controllers
         }
 
         [Route("{profileLink}")]
+        [Authorize(Roles = "Member")]
         public IActionResult Index(string profileLink)
         {
             ProfileViewModel pvm = userManager.FindByProfileLink(db, profileLink);
-            return View(pvm);
+            if (pvm == null)
+                return NotFound();
+            else
+                return View(pvm);
         }
 
-        [HttpGet]
         [Authorize(Roles = "Member")]
         [Route("settings")]
         public async Task<IActionResult> Settings()
@@ -44,7 +47,7 @@ namespace KPITV.Controllers
         [Route("settings")]
         public async Task<IActionResult> Settings(string param, string value)
         {
-            await userManager.UpdateAsync(Models.BusinessLogic.UserHelper.Update(param, value, await userManager.GetUserAsync(HttpContext.User)));
+            await userManager.UpdateAsync(UserHelper.Update(param, value, await userManager.GetUserAsync(HttpContext.User)));
             db.SaveChanges();
             return new EmptyResult();
         }
@@ -53,7 +56,7 @@ namespace KPITV.Controllers
         public IActionResult CheckProfileLink(string profileLink)
         {
             List<string> tabooLinks = new List<string> { "SETTINGS", "USERS" };
-            if (db.Users.Count(a => a.ProfileLink == profileLink) > 0 || tabooLinks.Contains(profileLink))
+            if (db.Users.Count(a => a.ProfileLink == profileLink) > 0 || tabooLinks.Contains(profileLink.ToUpper()))
                 return Json(false);
             else
                 return Json(true);

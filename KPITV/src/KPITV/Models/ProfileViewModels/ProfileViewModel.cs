@@ -13,18 +13,21 @@
         public string About { get; set; }
         public static implicit operator ProfileViewModel(ApplicationUser applicationUser)
         {
-            return new ProfileViewModel()
-            {
-                FirstName = applicationUser.FirstName,
-                LastName = applicationUser.LastName,
-                PhoneNumber = applicationUser.PhoneNumber,
-                Email = applicationUser.Email,
-                PhoneNumberAdditional = applicationUser.PhoneNumberAdditional,
-                ProfileLink = applicationUser.ProfileLink,
-                LinkVK = applicationUser.LinkVK,
-                LinkFB = applicationUser.LinkFB,
-                About = applicationUser.About
-            };
+            if (applicationUser == null)
+                return null;
+            else
+                return new ProfileViewModel()
+                {
+                    FirstName = applicationUser.FirstName,
+                    LastName = applicationUser.LastName,
+                    PhoneNumber = applicationUser.PhoneNumber,
+                    Email = applicationUser.Email,
+                    PhoneNumberAdditional = applicationUser.PhoneNumberAdditional,
+                    ProfileLink = applicationUser.ProfileLink,
+                    LinkVK = applicationUser.LinkVK,
+                    LinkFB = applicationUser.LinkFB,
+                    About = applicationUser.About
+                };
         }
     }
 }

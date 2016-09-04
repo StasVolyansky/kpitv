@@ -8,5 +8,10 @@ namespace KPITV.Controllers
         {
             return View();
         }
+
+        public IActionResult ErrorStatus(string id)
+        {
+            return Content($"Code: {id}");
+        }
     }
 }

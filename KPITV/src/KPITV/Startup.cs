@@ -65,6 +65,7 @@ namespace KPITV
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                //app.UseStatusCodePagesWithReExecute("/Home/ErrorStatus/{0}");
             }
 
             app.UseStaticFiles();
@@ -82,9 +83,6 @@ namespace KPITV
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "profileLink",
-                    template: "{profileLink}");
             });
         }
     }
