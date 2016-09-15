@@ -32,7 +32,7 @@ namespace KPITV.Models
         [RegularExpression("[a-z][a-z0-9]+")]
         [MinLength(3)]
         [MaxLength(30)]
-        [Remote(action: "CheckProfileLink", controller: "Profile", ErrorMessage = "This link is occupied \0")]
+        [Remote(action: "CheckProfileLink", controller: "Profile", ErrorMessage = "This link is occupied")]
         public string ProfileLink { get; set; }
     }
 }

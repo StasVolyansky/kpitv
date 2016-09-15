@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject UserManager<ApplicationUser> UserManager
+@using System.Collections.Generic
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,12 +32,14 @@
 </head>
 <body>
     <div class="loading-animation"></div>
-
     <nav class="navbar navbar-default">
         <a class="navbar-brand logo-brand" href="#"></a>
         <ul class="nav navbar-nav">
             <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-            <li><a href="@Url.Action("Index", "Users")">Users</a></li>
+            @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+            {
+                <li><a href="@Url.Action("Index", "Users")">Users</a></li>
+            }
         </ul>
         <ul class="nav navbar-nav navbar-right user-menu">
             @await Html.PartialAsync("_LoginPartial")

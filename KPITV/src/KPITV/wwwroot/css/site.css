@@ -72,6 +72,13 @@
 
 /**************/
 
+
+/*Add Stuff Form*/
+.form-stuff{
+    width: 500px;
+}
+/****************/
+
 /***Loading animation***/
 .loading {
     pointer-events: none;

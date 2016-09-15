@@ -1,0 +1,33 @@
+﻿@model KPITV.Models.StuffViewModels.StuffViewModel
+
+<div class="form-stuff">
+    <form method="post" enctype="multipart/form-data" asp-action="Add" asp-controller="Stuff" class="form-group">
+        <input type="file" name="photo" accept="image/*" class="form-control" />
+        <label>Name</label><input name="name" class="form-control" />
+        <label>Type</label>
+        <select name="type" class="form-control">
+            @foreach (var type in Model.Types)
+            {
+                <option value="@type">@type</option>
+            }
+            <option>Add</option>
+        </select>
+        <div class="addType">
+            <label>New type: </label><input name="type" class="form-control" />
+        </div>
+        <label>Number</label><input name="number" class="form-control" />
+        <label>Description</label><textarea name="description" class="form-control"></textarea>
+        <label>Owner</label>
+        <select name="owner" class="form-control">
+            @foreach (var owner in Model.Members)
+            {
+                <option value="@owner.ProfileLink">@owner.FirstName @owner.LastName</option>
+            }
+            <option>Add</option>
+        </select>
+        <div class="addOwner">
+            <label>Owner: </label><input name="owner" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

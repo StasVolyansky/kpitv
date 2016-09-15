@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KPITV.Models.BusinessLogic;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace KPITV.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            VK lol = new VK();
+            var loll = await lol.GetVKLink(await lol.GetId("stasphere"));
             return View();
         }
 
