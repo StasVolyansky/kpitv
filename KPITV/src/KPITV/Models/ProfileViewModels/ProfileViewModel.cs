@@ -11,6 +11,8 @@
         public string LinkVK { get; set; }
         public string LinkFB { get; set; }
         public string About { get; set; }
+        public string ImageLink { get; set; }
+
         public static implicit operator ProfileViewModel(ApplicationUser applicationUser)
         {
             if (applicationUser == null)
@@ -26,7 +28,8 @@
                     ProfileLink = applicationUser.ProfileLink,
                     LinkVK = applicationUser.LinkVK,
                     LinkFB = applicationUser.LinkFB,
-                    About = applicationUser.About
+                    About = applicationUser.About,
+                    ImageLink = applicationUser.ImageLink
                 };
         }
     }
