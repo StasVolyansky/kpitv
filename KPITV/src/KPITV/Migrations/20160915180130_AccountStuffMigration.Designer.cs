@@ -8,8 +8,8 @@ using KPITV.Models.Data;
 namespace KPITV.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160817103120_IdentityMigration")]
-    partial class IdentityMigration
+    [Migration("20160915180130_AccountStuffMigration")]
+    partial class AccountStuffMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,9 @@ namespace KPITV.Migrations
                 {
                     b.Property<string>("Id");
 
+                    b.Property<string>("About")
+                        .HasAnnotation("MaxLength", 140);
+
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -30,6 +33,22 @@ namespace KPITV.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 20);
+
+                    b.Property<string>("ImageLink");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 20);
+
+                    b.Property<string>("LinkFB")
+                        .HasAnnotation("MaxLength", 70);
+
+                    b.Property<string>("LinkVK")
+                        .HasAnnotation("MaxLength", 50);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -45,13 +64,21 @@ namespace KPITV.Migrations
 
                     b.Property<string>("PhoneNumber");
 
+                    b.Property<string>("PhoneNumberAdditional")
+                        .HasAnnotation("MaxLength", 20);
+
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("ProfileLink")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 30);
 
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasAnnotation("MaxLength", 256);
 
                     b.HasKey("Id");
@@ -63,7 +90,37 @@ namespace KPITV.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex");
 
+                    b.HasIndex("ProfileLink")
+                        .IsUnique();
+
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("KPITV.Models.Stuff", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImageLink");
+
+                    b.Property<string>("Name")
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("Number");
+
+                    b.Property<string>("OwnerId");
+
+                    b.Property<string>("OwnerName");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Stuff");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -171,6 +228,13 @@ namespace KPITV.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("KPITV.Models.Stuff", b =>
+                {
+                    b.HasOne("KPITV.Models.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

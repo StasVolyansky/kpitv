@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace KPITV.Migrations
 {
-    public partial class IdentityMigration : Migration
+    public partial class AccountStuffMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,20 +14,28 @@ namespace KPITV.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    About = table.Column<string>(maxLength: 140, nullable: true),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 20, nullable: false),
+                    ImageLink = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(maxLength: 20, nullable: false),
+                    LinkFB = table.Column<string>(maxLength: 70, nullable: true),
+                    LinkVK = table.Column<string>(maxLength: 50, nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     PasswordHash = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberAdditional = table.Column<string>(maxLength: 20, nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    ProfileLink = table.Column<string>(maxLength: 30, nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    UserName = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +68,30 @@ namespace KPITV.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stuff",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    ImageLink = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: true),
+                    Number = table.Column<string>(nullable: true),
+                    OwnerId = table.Column<string>(nullable: true),
+                    OwnerName = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stuff", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Stuff_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -160,6 +192,17 @@ namespace KPITV.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_ProfileLink",
+                table: "AspNetUsers",
+                column: "ProfileLink",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stuff_OwnerId",
+                table: "Stuff",
+                column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName");
@@ -192,6 +235,9 @@ namespace KPITV.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Stuff");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

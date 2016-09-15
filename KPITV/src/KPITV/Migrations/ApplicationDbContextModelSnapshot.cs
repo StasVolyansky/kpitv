@@ -37,6 +37,8 @@ namespace KPITV.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 20);
 
+                    b.Property<string>("ImageLink");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 20);
@@ -95,13 +97,15 @@ namespace KPITV.Migrations
 
             modelBuilder.Entity("KPITV.Models.Stuff", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
                     b.Property<string>("ImageLink");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasAnnotation("MaxLength", 50);
 
                     b.Property<string>("Number");
 
