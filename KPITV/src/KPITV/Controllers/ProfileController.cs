@@ -43,7 +43,7 @@ namespace KPITV.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Authorize(Roles = "User")]
         [Route("settings")]
         public async Task<IActionResult> Settings(string param, string value)
         {
