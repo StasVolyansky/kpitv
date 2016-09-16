@@ -116,6 +116,7 @@ namespace KPITV.Controllers
                     result = await userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
+                        await userManager.AddToRoleAsync(user, "User");
                         returnUrl = Url.Action("Settings", "Profile");
                         return RedirectToLocal(returnUrl);
                     }
