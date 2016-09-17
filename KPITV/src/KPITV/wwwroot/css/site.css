@@ -18,7 +18,7 @@
     width: 15px;
 }
 
-.form-log{
+.form-log {
     padding: 14px 10px 0 0;
 }
 
@@ -58,6 +58,19 @@
     border: none;
 }
 
+.profile-photo img {
+    width: 200px;
+    height: 200px;
+}
+
+.profile-photo img:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.profile-photo input{
+    display: none;
+}
 
 /*.settings-info input:focus {
     outline: solid 1px gray;
@@ -74,7 +87,7 @@
 
 
 /*Add Stuff Form*/
-.form-stuff{
+.form-stuff {
     width: 500px;
 }
 /****************/

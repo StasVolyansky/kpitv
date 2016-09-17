@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace KPITV.Models.BusinessLogic
 {
@@ -58,8 +63,36 @@ namespace KPITV.Models.BusinessLogic
                 case "about":
                     user.About = value;
                     break;
+                case "imageLink":
+                    user.ImageLink = value;
+                    break;
             }
             return user;
+        }
+        public static async Task<string> AddPhoto(ApplicationUser user, IFormFile photo)
+        {
+
+            string name = GeneratePhotoName(user);
+            string storagePath = $"wwwroot/images/profile_photos";
+            string extension = photo.FileName.Substring(photo.FileName.LastIndexOf('.'));
+            string imageLink = Path.Combine(storagePath, $"{name}{extension}");
+            using (var fileStream = new FileStream(imageLink, FileMode.Create))
+            {
+                await photo.CopyToAsync(fileStream);
+            }
+            return imageLink.Substring(8);
+        }
+
+        public static string GeneratePhotoName(ApplicationUser user)
+        {
+            byte[] bytes = Encoding.Unicode.GetBytes(user.Id);
+            var CSP = MD5.Create();
+            byte[] byteHash = CSP.ComputeHash(bytes);
+            string uniquePart = string.Empty;
+            foreach (var b in byteHash)
+                uniquePart += $"{b:x2}";
+            string name = $"{user.FirstName}_{user.LastName}";
+            return $"{name}_{uniquePart}";
         }
     }
 }

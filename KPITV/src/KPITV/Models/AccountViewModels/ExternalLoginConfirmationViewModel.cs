@@ -27,5 +27,6 @@ namespace KPITV.Models.AccountViewModels
         [MaxLength(30)]
         [Remote(action: "CheckProfileLink", controller: "Profile", ErrorMessage = "This link is busy")]
         public string ProfileLink { get; set; }
+        public string ImageLink { get; set; }
     }
 }

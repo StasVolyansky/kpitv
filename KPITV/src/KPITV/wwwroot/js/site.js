@@ -21,30 +21,24 @@ function LogFB() {
     $('#logFBForm').submit();
 }
 
-$(document).ready(function () {
-    $(".settings-info input").change(function () {
-        $.ajax({
-            method: "post",
-            url: "settings",
-            data: {
-                param: $(this).attr("name"),
-                value: $(this).val()
-            }
-        });
-    });
-});
-
-function IsMember() {
+function UploadSettings() {
     $.ajax({
         method: "post",
-        url: "https://api.vk.com/method/groups.getMembers",
+        url: "settings",
         data: {
-            group_id: "kpitvhome",
-            version: "5.27"
-        },
-        dataType: "json",
-        success: function (data) {
-            alert(data);
+            param: $(this).attr("name"),
+            value: $(this).val()
         }
     });
 }
+
+$(document).ready(function () {
+    $(".profile-photo img").click(function () {
+        $(".profile-photo input").click();
+        if ($(".profile-photo input").val() != "")
+            $(".profile-photo form").submit();
+    });
+
+    $(".settings-info input").change(UploadSettings());
+});
+

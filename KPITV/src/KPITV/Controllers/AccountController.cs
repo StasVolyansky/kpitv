@@ -108,7 +108,8 @@ namespace KPITV.Controllers
                     PhoneNumber = model.PhoneNumber,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    ProfileLink = model.ProfileLink
+                    ProfileLink = model.ProfileLink,
+                    ImageLink = "images\\profile photos\\default.jpg"
                 };
                 var result = await userManager.CreateAsync(user);
                 if (result.Succeeded)

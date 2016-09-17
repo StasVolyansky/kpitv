@@ -8,6 +8,7 @@ using KPITV.Models.ProfileViewModels;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace KPITV.Controllers
 {
@@ -50,6 +51,18 @@ namespace KPITV.Controllers
             await userManager.UpdateAsync(UserHelper.Update(param, value, await userManager.GetUserAsync(HttpContext.User)));
             db.SaveChanges();
             return new EmptyResult();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> ChangePhoto(IFormFile photo)
+        {
+            if (photo != null)
+            {
+                var user = await userManager.GetUserAsync(HttpContext.User);
+                await userManager.UpdateAsync(UserHelper.Update("imageLink", await UserHelper.AddPhoto(user, photo), user));
+            }
+            return RedirectToAction("Settings");
         }
 
         [AcceptVerbs("Get", "Post")]

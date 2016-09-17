@@ -2,6 +2,10 @@
 
 <div class="settings">
     <div>Profile information</div>
+    <div class="profile-photo">
+        <img src="@Model.ImageLink" />
+        <form asp-action="ChangePhoto" asp-controller="Profile" method="post" enctype="multipart/form-data"><input type="file" accept="image/*" name="photo" /></form>
+    </div>
     <div class="settings-info">
         <div>
             <div>
