@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
-    $(".profile-photo img").click(function () {
-        $(".profile-photo input").click();
-        if ($(".profile-photo input").val() != "")
-            $(".profile-photo form").submit();
-    });
-    $(".settings-info input").change(UploadSettings());
+    //$(".profile-photo img").click(function () {
+    //    $(".profile-photo input").click();
+    //    if ($(".profile-photo input").val() != "")
+    //        $(".profile-photo form").submit();
+    //});
+    $(".settings-info input").change(UploadSettings);
 });
 
 function UploadSettings() {

@@ -107,6 +107,15 @@
 .form-stuff {
     width: 500px;
 }
+
+.form-stuff > form > img {
+    width: 200px;
+    height: 200px;
+}
+
+.form-stuff > form > input[type=file] {
+    display: none;
+}
 /****************/
 
 /***Loading animation***/

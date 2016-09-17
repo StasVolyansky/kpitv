@@ -1,7 +1,10 @@
 ﻿@model KPITV.Models.StuffViewModels.StuffViewModel
 
+<script src="~/js/stuff/add.js" asp-append-version="true"></script>
+
 <div class="form-stuff">
     <form method="post" enctype="multipart/form-data" asp-action="Add" asp-controller="Stuff" class="form-group">
+        <img src="~/images/stuff/default.png" />
         <input type="file" name="photo" accept="image/*" class="form-control" />
         <label>Name</label><input name="name" class="form-control" />
         <label>Type</label>

@@ -68,7 +68,7 @@ namespace KPITV.Controllers
         [AcceptVerbs("Get", "Post")]
         public IActionResult CheckProfileLink(string profileLink)
         {
-            List<string> tabooLinks = new List<string> { "SETTINGS", "USERS" };
+            List<string> tabooLinks = new List<string> { "SETTINGS", "USERS", "STUFF" };
             if (db.Users.Count(a => a.ProfileLink == profileLink) > 0 || tabooLinks.Contains(profileLink.ToUpper()))
                 return Json(false);
             else
