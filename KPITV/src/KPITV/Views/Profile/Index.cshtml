@@ -1,6 +1,10 @@
 ﻿@using KPITV.Models.BusinessLogic
 
 @model KPITV.Models.ProfileViewModels.ProfileViewModel
+
+<div class="profile-photo">
+    <img src="@Model.ImageLink" />
+</div>
 <h1>@Model.FirstName @Model.LastName</h1>
 <div>
     Email: @Model.Email

@@ -1,21 +1,7 @@
 ﻿@model KPITV.Models.UsersViewModels.UsersViewModel
 @using Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
-<script>
-    $(document).ready(function () {
-        $('.role-toggler').change(function () {
-            $.ajax({
-                method: 'post',
-                url: "@Url.Action("ChangeRole", "Users")",
-                data: {
-                    'name': $(this).attr('id'),
-                    'role': $(this).attr('name'),
-                    'hasRole': $(this).attr('name') == 'User' ? !$(this).prop('checked') : $(this).prop('checked')
-                }
-            });
-        });
-    });
-</script>
+<script src="~/js/users.js" asp-append-version="true"></script>
 
 <h1>Users list</h1>
 <table class="table table-bordered">

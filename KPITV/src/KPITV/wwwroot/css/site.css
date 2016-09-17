@@ -22,6 +22,21 @@
     padding: 14px 10px 0 0;
 }
 
+.menu-photo {
+    padding: 4px 5px 0 0;
+}
+
+    .menu-photo img {
+        margin-left: 5px;
+        border-radius: 100px;
+        width: 40px;
+        height: 40px;
+    }
+
+        .menu-photo img:hover {
+            cursor: pointer;
+        }
+
 /***Settings***/
 
 .settings-info {
@@ -63,14 +78,16 @@
     height: 200px;
 }
 
-.profile-photo img:hover{
-    cursor: pointer;
-    opacity: 0.8;
-}
+    .profile-photo img:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
 
-.profile-photo input{
+.profile-photo input {
     display: none;
 }
+
+
 
 /*.settings-info input:focus {
     outline: solid 1px gray;
