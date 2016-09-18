@@ -10,11 +10,11 @@
     <li class="dropdown">
         <div class="menu-photo dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span>@currentUser.FirstName</span>
-            <img src="@currentUser.ImageLink" />
+            <img src="/@currentUser.ImageLink" />
         </div>
         <ul class="dropdown-menu">
-            <li><a href="@currentUser.ProfileLink">My profile</a></li>
-            <li><a href="settings" title="Settings">Settings</a></li>
+            <li><a href="/@currentUser.ProfileLink">My profile</a></li>
+            <li><a href="/settings" title="Settings">Settings</a></li>
             <li>
                 <a onclick="LogOff()">Log Off</a>
                 <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="form-horizontal form-log"></form>

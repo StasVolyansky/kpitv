@@ -73,9 +73,9 @@ namespace KPITV.Models.BusinessLogic
         {
 
             string name = GeneratePhotoName(user);
-            string storagePath = $"wwwroot/images/profile_photos";
+            string storagePath = $"wwwroot/images/profile_photos/";
             string extension = photo.FileName.Substring(photo.FileName.LastIndexOf('.'));
-            string imageLink = Path.Combine(storagePath, $"{name}{extension}");
+            string imageLink = $"{storagePath}{name}{extension}";
             using (var fileStream = new FileStream(imageLink, FileMode.Create))
             {
                 await photo.CopyToAsync(fileStream);

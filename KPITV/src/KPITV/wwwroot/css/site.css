@@ -18,6 +18,10 @@
     width: 15px;
 }
 
+#logoutForm {
+    display: none;
+}
+
 .form-log {
     padding: 14px 10px 0 0;
 }
@@ -108,14 +112,14 @@
     width: 500px;
 }
 
-.form-stuff > form > img {
-    width: 200px;
-    height: 200px;
-}
+    .form-stuff > form > img {
+        width: 200px;
+        height: 200px;
+    }
 
-.form-stuff > form > input[type=file] {
-    display: none;
-}
+    .form-stuff > form > input[type=file] {
+        display: none;
+    }
 /****************/
 
 /***Loading animation***/
