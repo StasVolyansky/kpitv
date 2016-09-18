@@ -113,13 +113,23 @@
 }
 
     .form-stuff > form > img {
+        display: block;
+        cursor: pointer;
         width: 200px;
         height: 200px;
     }
 
-    .form-stuff > form > input[type=file] {
+    .form-stuff input[name=photo] {
         display: none;
     }
+
+#addType {
+    display: none;
+}
+
+#addOwner {
+    display: none;
+}
 /****************/
 
 /***Loading animation***/
