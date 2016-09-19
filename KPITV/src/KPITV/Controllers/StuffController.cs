@@ -7,9 +7,9 @@ using KPITV.Models.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using KPITV.Models.BusinessLogic;
+using Microsoft.EntityFrameworkCore;
 
 namespace KPITV.Controllers
 {
@@ -25,9 +25,26 @@ namespace KPITV.Controllers
             this.userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
         }
+
+        [Route("[controller]")]
         public IActionResult Index()
         {
-            return View();
+            var types = db.Stuff.Select(a => a.Type).ToList().Distinct();
+            return View(types);
+        }
+
+        [Route("[controller]/{type}")]
+        public IActionResult Type(string type)
+        {
+            var items = db.Stuff.Where(a => a.Type == type).ToList();
+            return View(items);
+        }
+
+        [Route("[controller]/{type}/{number}")]
+        public IActionResult Item(string type, string number)
+        {
+            var stuffItem = db.Stuff.Where(a => a.Number == number).Include(a => a.Owner).FirstOrDefault();
+            return View(stuffItem);
         }
 
         public async Task<IActionResult> Add()

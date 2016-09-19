@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    //$(".form-stuff > form > img").click(function () {
-    //    $(".form-stuff > form > input[type=file]").click();
-    //    if ($(".form-stuff > form > input[type=file]").val() != "")
-    //        $(".form-stuff > form > img").attr("src", getFileLink())
-    //});
+    $(".form-stuff > form > img").click(function () {
+        $(".form-stuff > form > input[type=file]").click();
+        //if ($(".form-stuff > form > input[type=file]").val() != "")
+        //    $(".form-stuff > form > img").attr("src", getFileLink())
+    });
 
     //add/change type
 
@@ -26,7 +26,8 @@
             $(this).attr("name", "type");
             console.log("выбрано не-add");
         }
-    })
+    });
+
     $("#addType input").change(function () { // если изменилось поле
         console.log("изменилось поле");
         if ($("#addType input").val() != "") { // и при этом поле не пусто
@@ -39,8 +40,12 @@
             $(this).removeAttr("name");
             console.log("поле пусто");
         }
-    })
+    });
 
+    if ($("#selectType").val() == "add")
+        $("#selectType").change();
+
+    
     // add/change owner
 
     $("#selectOwner").change(function () {
@@ -62,7 +67,8 @@
             $(this).attr("name", "owner");
             console.log("выбрано не-add");
         }
-    })
+    });
+
     $("#addOwner input").change(function () { // если изменилось поле
         console.log("изменилось поле");
         if ($("#addOwner input").val() != "") { // и при этом поле не пусто
@@ -75,7 +81,11 @@
             $(this).removeAttr("name");
             console.log("поле пусто");
         }
-    })
+    });
+
+    if ($("#selectOwner").val() == "add")
+        $("#selectOwner").change();
+
 
 });
 

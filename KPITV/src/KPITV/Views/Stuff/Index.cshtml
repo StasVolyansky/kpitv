@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+
+<script src="~/js/stuff/index.js"></script>
+
+<div class="stuff-cards-container">
+    @foreach (var item in Model)
+    {
+        <div class="stuff-card" data-href="stuff/@item">
+            <div class="stuff-card-name">
+                @item
+            </div>
+        </div>
+    }
+</div>

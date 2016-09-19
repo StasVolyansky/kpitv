@@ -1,0 +1,17 @@
+﻿@model IEnumerable<KPITV.Models.Stuff>
+
+<script src="~/js/stuff/type.js"></script>
+
+<div class="stuff-cards-container">
+    @foreach (var item in Model)
+    {
+        <div class="stuff-card" data-href="/stuff/@item.Type/@item.Number">
+            <div class="stuff-card-name">
+                @item.Name
+            </div>
+            <div class="stuff-card-photo">
+                <img src="/@item.ImageLink"/>
+            </div>
+        </div>
+    }
+</div>

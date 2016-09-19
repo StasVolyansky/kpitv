@@ -1,0 +1,18 @@
+﻿@model KPITV.Models.Stuff
+
+<div class="item-page">
+    <div class="item-page-photo"><img src="/@Model.ImageLink" /></div>
+    <div class="item-page-name">@Model.Name</div>
+    <div class="item-page-prop">@Model.Number</div>
+    <div class="item-page-prop">@Model.Type</div>
+    <div class="item-page-owner">
+        @if (Model.OwnerId != null)
+        {
+            <a href="/@Model.Owner.ProfileLink">@Model.OwnerName</a>
+        }
+        else
+        {
+            @Model.OwnerName
+        }
+    </div>
+</div>

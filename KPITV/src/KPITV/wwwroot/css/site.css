@@ -151,3 +151,37 @@
     background-image: url(/images/loading.gif);
 }
 /**********************/
+
+
+/*stuff-item*/
+
+.item-page-photo img {
+    width: 100px;
+    height: 100px;
+}
+
+.stuff-card {
+    float: left; 
+    margin-right: 10px;   
+    border: solid black 1px;
+    height: 185px;
+    width: 140px;
+}
+
+.stuff-card img{
+    width: 138px;
+    height: 140px;
+}
+
+    .stuff-card:hover {
+        cursor: pointer;
+        margin-top: 5px;
+        background-color: rgb(243, 243, 243);
+    }
+
+    .stuff-card-name{
+        text-align: center;
+        margin: 0 auto;
+        font-size: 30px;
+    }
+/************/
