@@ -47,11 +47,11 @@ namespace KPITV.Controllers
             return View(stuffItem);
         }
 
+        [Route("[controller]/[action]")]
         public async Task<IActionResult> Add()
         {
             List<StuffViewModel.Owner> owners = new List<StuffViewModel.Owner>();
             var members = await userManager.GetUsersInRoleAsync("Member") as List<ApplicationUser>;
-
             foreach (var item in members)
                 owners.Add(new StuffViewModel.Owner
                 {
@@ -59,11 +59,8 @@ namespace KPITV.Controllers
                     ImageLink = item.ImageLink,
                     ProfileLink = item.ProfileLink
                 });
-
             var otherOwners = db.Stuff.Select(a => a.OwnerName).Distinct().ToList();
-
             foreach (var item in otherOwners)
-            {
                 if (owners.Count(a => a.OwnerName == item) == 0)
                     owners.Add(new StuffViewModel.Owner
                     {
@@ -71,7 +68,6 @@ namespace KPITV.Controllers
                         ImageLink = "images/profile_photos/default.jpg",
                         ProfileLink = ""
                     });
-            }
             StuffViewModel svm = new StuffViewModel()
             {
                 Types = db.Stuff.Select(a => a.Type).Distinct().ToList(),
@@ -80,6 +76,7 @@ namespace KPITV.Controllers
             return View(svm);
         }
 
+        [Route("[controller]/[action]")]
         [HttpPost]
         public async Task<IActionResult> Add(string name, string type, string number, string description, string owner, IFormFile photo)
         {
@@ -107,6 +104,14 @@ namespace KPITV.Controllers
         public IActionResult CheckNumber(string number)
         {
             if (db.Stuff.Count(a => a.Number == number) > 0)
+                return Json(false);
+            else
+                return Json(true);
+        }
+
+        public IActionResult CheckType(string type)
+        {
+            if (db.Stuff.Count(a => a.Type.ToUpper() == type.ToUpper()) > 0)
                 return Json(false);
             else
                 return Json(true);

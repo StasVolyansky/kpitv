@@ -6,7 +6,10 @@
     <form method="post" enctype="multipart/form-data" asp-action="Add" asp-controller="Stuff" class="form-group">
         <img src="~/images/stuff/default.png" />
         <input type="file" name="photo" accept="image/*" class="form-control" />
-        <label>Name</label><input name="name" class="form-control" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <label asp-for="Name">Name</label>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input asp-for="Name" name="name" class="form-control" />
         <label>Type</label>
         <select id="selectType" name="type" class="form-control">
             @foreach (var type in Model.Types)
@@ -16,10 +19,16 @@
             <option value="add">Add</option>
         </select>
         <div id="addType">
-            <label>New type: </label><input class="form-control" />
+            <label asp-for="Type">New type: </label>
+            <span asp-validation-for="Type" class="text-danger"></span>
+            <input asp-for="Type" class="form-control" />
         </div>
-        <label>Number</label><input name="number" class="form-control" />
-        <label>Description</label><textarea name="description" class="form-control"></textarea>
+        <label asp-for="Number">Number</label>
+        <span asp-validation-for="Number" class="text-danger"></span>
+        <input asp-for="Number" name="number" class="form-control" />
+        <label asp-for="Description">Description</label>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <textarea asp-for="Description" name="description" class="form-control"></textarea>
         <label>Owner</label>
         <select id="selectOwner" name="owner" class="form-control">
             @foreach (var owner in Model.Members)
@@ -29,8 +38,13 @@
             <option value="add">Add</option>
         </select>
         <div id="addOwner">
-            <label>Owner: </label><input class="form-control" />
+            <label asp-for="OwnerName">New owner: </label>
+            <span asp-validation-for="OwnerName" class="text-danger"></span>
+            <input asp-for="OwnerName" class="form-control" />
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
